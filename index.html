@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Luxury Shop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      color: #2c3e50;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #000, #2c3e50);
+      color: #f1c40f;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #f1c40f;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .title {
+      text-align: center;
+    }
+    .title h1 {
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: bold;
+    }
+    .title p {
+      margin-top: 5px;
+      font-size: 1.1em;
+      color: #ecf0f1;
+    }
+
+    /* NAVIGATION */
+    nav {
+      background: #111;
+      padding: 12px 0;
+      text-align: center;
+    }
+    nav a {
+      color: #f1c40f;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #e67e22;
+    }
+
+    /* SECTIONS */
+    section {
+      display: none;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    section.active {
+      display: block;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .card-content {
+      padding: 20px;
+      text-align: center;
+    }
+    .card-content h2 {
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .price {
+      color: #e67e22;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #f39c12, #d35400);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: linear-gradient(135deg, #d35400, #e67e22);
+    }
+
+    /* CART */
+    .cart {
+      margin-top: 40px;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 2px solid #f1c40f;
+    }
+    .cart h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #f39c12;
+    }
+    .cart ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cart li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-total {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.2em;
+      color: #e74c3c;
+    }
+
+    /* ABOUT & TEAM */
+    .about, .team {
+      text-align: left;
+      line-height: 1.6;
+    }
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .member {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .member img {
+      width: 100%;
+      border-radius: 50%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #000;
+      color: #bdc3c7;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <img src="E:/KTPL/image/Gulfs Display (1).png" alt="Luxury Logo" class="logo">
+      <div class="title">
+        <h1>✨ HỘP SINH TỒN SURVIVORS ✨</h1>
+        <p>Survivor – chủ động đối mặt mọi thách thức</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" onclick="showSection('products')">Sản phẩm</a>
+    <a href="#" onclick="showSection('about')">Giới thiệu công ty</a>
+    <a href="#" onclick="showSection('team')">Thành viên</a>
+    <a href="#" onclick="showSection('contact')">Liên hệ</a>
+  </nav>
+
+  <!-- SECTION: PRODUCTS -->
+  <section id="products" class="active">
+    <h2 style="text-align:center; margin-bottom:30px;">🛍️ Sản phẩm nổi bật</h2>
+    <div class="products">
+      <div class="card">
+        <img src="E:/KTPL/image/z7043269283390_f2b52a4c1a187555bcb23ff8fb7a179c.jpg" alt="Hộp loạn thế" onclick="showProductDetail('Hộp loạn thế')">
+        <div class="card-content">
+          <h2 onclick="showProductDetail('Hộp loạn thế')">Hộp loạn thế</h2>
+          <p class="price">70.000đ</p>
+          <button class="btn" onclick="addToCart('Hộp loạn thế', 70000)">Mua ngay</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="E:/KTPL/image/z7043269109444_61419240f00017201b03a5bae2498398.jpg" alt="Hộp biến dị" onclick="showProductDetail('Hộp biến dị')">
+        <div class="card-content">
+          <h2 onclick="showProductDetail('Hộp biến dị')">Hộp biến dị</h2>
+          <p class="price">70.000đ</p>
+          <button class="btn" onclick="addToCart('Hộp biến dị', 70000)">Mua ngay</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/qh6Vq9C.jpg" alt="Giày Sneaker" onclick="showProductDetail('Giày Sneaker')">
+        <div class="card-content">
+          <h2 onclick="showProductDetail('Giày Sneaker')">Giày Sneaker</h2>
+          <p class="price">890.000đ</p>
+          <button class="btn" onclick="addToCart('Giày Sneaker', 890000)">Mua ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart">
+      <h2>🛒 Giỏ Hàng</h2>
+      <ul id="cart-items"></ul>
+      <p class="cart-total">Tổng cộng: <span id="total">0</span> đ</p>
+    </div>
+  </section>
+
+  <!-- SECTION: ABOUT -->
+<section id="about">
+  <h2>🏢 Giới thiệu công ty</h2>
+  <div class="about">
+    <h3>SVV – SURVIVORS</h3>
+    <p><em>Chủ động đối phó với mọi thách thức</em></p>
+
+    <p>
+      Trong một thế giới đầy biến động, SVV ra đời với sứ mệnh mang đến những giải pháp chuẩn bị 
+      và bảo vệ an toàn cho cộng đồng. Chúng tôi tin rằng sự chủ động chính là chìa khóa để mỗi cá nhân 
+      và gia đình có thể vững vàng trước thiên tai, biến đổi khí hậu hay các khủng hoảng bất ngờ.
+    </p>
+
+    <h3>✨ Giá trị cốt lõi</h3>
+    <ul>
+     Chủ động:</strong> Giúp khách hàng chuẩn bị sẵn sàng trước mọi tình huống.</li>
+     Khoa học & Chính thống:</strong> Thông tin được kiểm chứng từ nguồn uy tín.</li>
+     Sáng tạo & Ứng dụng:</strong> Biến tri thức sinh tồn thành trải nghiệm thú vị, dễ tiếp nhận và lan tỏa.</li>
+    </ul>
+
+    <h3>📦 Sản phẩm chủ lực</h3>
+    <ul>
+     Hộp Sinh Tồn SVV – Blindbox:</strong> Chứa mô hình vật tư sinh tồn cùng thẻ thông tin chi tiết.</li>
+     Thẻ thông tin sinh tồn:</strong> Kiến thức thực tế về công dụng, cách tìm kiếm và sử dụng vật dụng trong khẩn cấp.</li>
+    </ul>
+
+    <h3>🌍 Tầm nhìn</h3>
+    <p>
+      SVV hướng đến trở thành thương hiệu dẫn đầu trong lĩnh vực giáo dục – chuẩn bị sinh tồn, 
+      không chỉ tại Việt Nam mà còn vươn ra thị trường quốc tế.
+    </p>
+
+    <h3>🎯 Sứ mệnh</h3>
+    <p>
+      Giúp mọi người an toàn hơn, chủ động hơn và sẵn sàng hơn trước những biến cố không lường trước.  
+      Chúng tôi luôn đặt khách hàng làm trung tâm và không ngừng đổi mới để mang đến trải nghiệm tốt nhất.
+    </p>
+  </div>
+</section>
+
+<style>
+  #about {
+    max-width: 1000px;
+    margin: auto;
+    line-height: 1.8;
+    text-align: left; /* canh trái */
+  }
+  #about h2 {
+    margin-bottom: 25px;
+    color: #f39c12;
+  }
+  #about h3 {
+    margin-top: 25px;
+    color: #2c3e50;
+  }
+  #about ul {
+    margin: 15px 0 20px 20px;
+    padding-left: 20px;
+  }
+  #about ul li {
+    margin-bottom: 10px;
+  }
+</style>
+
+
+  <!-- SECTION: TEAM -->
+  <section id="team">
+    <h2>👥 Thành viên</h2>
+    <div class="team-members">
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Võ Lưu Quỳnh Anh</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Võ Nhật Gia Bảo</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Nguyễn Ngọc Gia Hân</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Phạm Ngọc Hải Đông</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Nguyễn Đăng Mạnh</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Nguyễn Anh Kiệt</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Trương Minh Trang</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Vũ Gia Thuận</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Nguyễn Minh Trí</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Tôn Thất Thanh Tuấn</h3><p>Nhà sáng lập</p></div>
+      <div class="member"><img src="E:\KTPL\image\images (1).png"><h3>Võ Ngọc Tường Vy</h3><p>Nhà sáng lập</p></div>
+    </div>
+  </section>
+
+  <!-- SECTION: CONTACT -->
+  <section id="contact">
+    <h2>📞 Liên hệ</h2>
+    <p>Địa chỉ: THPT Phú Nhuận<br>Email: tonthatthanhtuan@gmail.com</p>
+  </section>
+
+  <!-- SECTION: PRODUCT DETAIL -->
+  <section id="product-detail">
+    <h2 id="detail-name"></h2>
+    <img id="detail-img" src="" alt="" style="max-width:400px; border-radius:15px; display:block; margin:20px auto;">
+    <p id="detail-desc" style="margin:20px 0; font-size:1.1em; line-height:1.6;"></p>
+    <p class="price" id="detail-price"></p>
+    <button class="btn" id="detail-btn">Mua ngay</button>
+    <br><br>
+    <button class="btn" style="background:#7f8c8d;" onclick="showSection('products')">⬅ Quay lại</button>
+  </section>
+
+  <footer>
+    <p>© Hộp Sinh Tồn SURVIVORS</p>
+  </footer>
+
+  <script>
+    // dữ liệu sản phẩm
+    const products = [
+      {
+        name: "Hộp loạn thế",
+        price: 70000,
+        img: "E:/KTPL/image/z7043269283390_f2b52a4c1a187555bcb23ff8fb7a179c.jpg",
+        desc: "Hộp loạn thế chứa các mô hình vật tư sinh tồn, giúp bạn sẵn sàng đối phó mọi thách thức."
+      },
+      {
+        name: "Hộp biến dị",
+        price: 70000,
+        img: "E:/KTPL/image/z7043269109444_61419240f00017201b03a5bae2498398.jpg",
+        desc: "Hộp biến dị mang đến trải nghiệm sáng tạo với nhiều kiến thức sinh tồn hữu ích."
+      },
+      {
+        name: "Giày Sneaker",
+        price: 890000,
+        img: "https://i.imgur.com/qh6Vq9C.jpg",
+        desc: "Giày sneaker thời trang, bền đẹp, phù hợp cho hoạt động ngoài trời và hàng ngày."
+      }
+    ];
+
+    // Chuyển tab
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    // Giỏ hàng
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      total += price;
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartList = document.getElementById("cart-items");
+      cartList.innerHTML = "";
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${item.name} x${item.quantity} 
+          <span>${(item.price * item.quantity).toLocaleString()}đ</span>
+        `;
+        cartList.appendChild(li);
+      });
+      document.getElementById("total").textContent = total.toLocaleString();
+    }
+
+    // Hiển thị chi tiết sản phẩm
+    function showProductDetail(name) {
+      const product = products.find(p => p.name === name);
+      if (!product) return;
+
+      document.getElementById("detail-name").textContent = product.name;
+      document.getElementById("detail-img").src = product.img;
+      document.getElementById("detail-desc").textContent = product.desc;
+      document.getElementById("detail-price").textContent = product.price.toLocaleString() + "đ";
+
+      const btn = document.getElementById("detail-btn");
+      btn.onclick = () => addToCart(product.name, product.price);
+
+      showSection("product-detail");
+    }
+  </script>
+</body>
+</html>
